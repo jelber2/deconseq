@@ -1,4 +1,4 @@
-deconseq
+DeconSeq
 ========
 ####log into your account on SuperMikeII
 ####go to your work directory on the cluster
@@ -6,9 +6,6 @@ deconseq
 
 ####make a directory to store the FASTA files for DeconSeq
     mkdir deconseq_ref #or whatever you want to call the reference directory
-
-####make a directoy to store the tmp files for DeconSeq
-    mkdir deconseq_tmp
 
 ####make a directory to store the output files for DeconSeq
     mkdir deconseq_out
@@ -137,15 +134,37 @@ wget http://downloads.sourceforge.net/project/deconseq/standalone/deconseq-stand
 ####scroll to use constant DB_DIR => 'db/';
 #####change to '/work/albuseb/deconseq_ref/
 
-####scroll to use constant TMP_DIR => 'tmp/';
-#####change to '/work/albuseb/deconseq_temp/
-
-####scroll to use constant TMP_OUT => 'out/';
-#####change to '/work/albuseb/deconseq_out/
-
 ####scroll to use constant DBS =>
 #####change hsref to deconseq_ref
 #####change 'Human Reference GRCh37' to 'NCBI_ALL_BAC_&_Vir'
 #####change 'hs_ref_GRCh37' to 'deconseq_ref.fa_c1,deconseq_ref.fa_c2,deconseq_ref.fa_c3,deconseq_ref.fa_c4a'
 ####scroll to use constant DB_DEFAULT =>
 #####change to hsref to deconseq_ref
+
+###you are now ready to run DeconSeq
+####first you need 'edit' deconseq.pl so it will run faster using 16 rather than 1 core
+#####all I had to do was add '-t 16' to two lines in the perl script to make
+#####deconseq_16cores.pl
+#####use wget to download the 16 core version from github
+#####assumes you are in /home/albuseb/bin/deconseq-standalone-0.4.3/ directory
+    wget https://raw.githubusercontent.com/jelber2/deconseq/master/deconseq_16cores.pl
+
+####now get the run_deconseq.sh script so you can run the program on a compute node
+    cd /home/albuseb/scripts/deconseq
+    wget https://raw.githubusercontent.com/jelber2/deconseq/master/run_deconseq.sh
+
+####this is the code the script implements
+    cd /home/albuseb/bin/deconseq-standalone-0.4.3/
+    perl /home/albuseb/bin/deconseq-standalone-0.4.3/deconseq_16cores.pl \
+    -f /work/albuseb/folder_containing_fastq_or_fasta_to_filter/file_to_filter.fastq \
+    -dbs deconseq_ref \
+    -out_dir /work/albuseb/deconseq_out
+
+####now you need to edit the script to change it to your allocation and also path to files to filter using nano
+    nano run_deconseq.sh
+
+####you can submit the job using
+    qsub /home/albuseb/scripts/deconseq/run_deconseq.sh
+
+####check it's status with qstat
+    qstat -u albuseb
