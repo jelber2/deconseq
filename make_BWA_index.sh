@@ -5,14 +5,14 @@
 # "make_BWA_index.sh" SuperMikeII script 
 # created by Jean P. Elbers
 # jean.elbers@gmail.com
-# last edited 4 December 2014
+# last edited 5 December 2014
 #
 ###############################################################################
 #
 #PBS -q single
 #PBS -A hpc_startup_albuseb
 #PBS -l nodes=1:ppn=1
-#PBS -l walltime=05:00:00
+#PBS -l walltime=06:00:00
 #PBS -o /work/albuseb/deconseq_ref/
 #PBS -j oe
 #PBS -N make_BWA_index.sh
