@@ -10,10 +10,10 @@
 ###############################################################################
 #
 #PBS -q single
-#PBS -A hpc_startup_jelber2
+#PBS -A hpc_startup_albuseb
 #PBS -l nodes=1:ppn=1
 #PBS -l walltime=03:00:00
-#PBS -o /work/jelber2/deconseq_ref/
+#PBS -o /work/albuseb/deconseq_ref/
 #PBS -j oe
 #PBS -N make_BWA_index.sh
 
@@ -23,12 +23,19 @@ date
 
 # Set work directory
 
-export WORK_DIR=/work/jelber2/deconseq_ref
+export WORK_DIR=/work/albuseb/deconseq_ref
 
-# Makes BWA index for the four deconseq_ref.fa_c#.fasta files
+# Makes BWA index for the 10 deconseq_ref.fa_c#.fasta files
 
 cd $WORK_DIR
-/home/jelber2/bin/deconseq-standalone-0.4.3/bwa64 index -a bwtsw -p deconseq_ref.fa_c1.fasta
-/home/jelber2/bin/deconseq-standalone-0.4.3/bwa64 index -a bwtsw -p deconseq_ref.fa_c2.fasta
-/home/jelber2/bin/deconseq-standalone-0.4.3/bwa64 index -a bwtsw -p deconseq_ref.fa_c3.fasta
-/home/jelber2/bin/deconseq-standalone-0.4.3/bwa64 index -a bwtsw -p deconseq_ref.fa_c4.fasta
+/home/albuseb/bin/deconseq-standalone-0.4.3/bwa64 index -a bwtsw -p deconseq_ref.fa_c1.fasta
+/home/albuseb/bin/deconseq-standalone-0.4.3/bwa64 index -a bwtsw -p deconseq_ref.fa_c2.fasta
+/home/albuseb/bin/deconseq-standalone-0.4.3/bwa64 index -a bwtsw -p deconseq_ref.fa_c3.fasta
+/home/albuseb/bin/deconseq-standalone-0.4.3/bwa64 index -a bwtsw -p deconseq_ref.fa_c4.fasta
+/home/albuseb/bin/deconseq-standalone-0.4.3/bwa64 index -a bwtsw -p deconseq_ref.fa_c5.fasta
+/home/albuseb/bin/deconseq-standalone-0.4.3/bwa64 index -a bwtsw -p deconseq_ref.fa_c6.fasta
+/home/albuseb/bin/deconseq-standalone-0.4.3/bwa64 index -a bwtsw -p deconseq_ref.fa_c7.fasta
+/home/albuseb/bin/deconseq-standalone-0.4.3/bwa64 index -a bwtsw -p deconseq_ref.fa_c8.fasta
+/home/albuseb/bin/deconseq-standalone-0.4.3/bwa64 index -a bwtsw -p deconseq_ref.fa_c9.fasta
+/home/albuseb/bin/deconseq-standalone-0.4.3/bwa64 index -a bwtsw -p deconseq_ref.fa_c10.fasta
+
