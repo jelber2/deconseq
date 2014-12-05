@@ -71,7 +71,11 @@ deconseq
     nano make_BWA_index.sh
 #####find #PBS -A hpc_startup_albuseb
 #####change hpc_startup_albuseb to your allocation name
-#####once done making changes, press 'ctrlX' (ctrl plus X), then press 'Y' to save changes
+#####once done making changes, press 'ctrlX' (ctrl plus X)
+######you will see   Save modified buffer (ANSWERING "No" WILL DESTROY CHANGES) ?
+######then press 'Y' to save changes
+######you will then see   File Name to Write: make_BWA_index.sh
+######press 'Enter' to save file as itself
 #####do the same thing for splitFasta.sh
     nano splitFasta.sh
 
@@ -100,6 +104,10 @@ wget http://downloads.sourceforge.net/project/deconseq/standalone/deconseq-stand
 ####check the status of the job using
     qstat -u albuseb
 
+####combine the small files into a larger one
+    cd /work/albuseb/deconseq_ref
+    cat deconseq_ref.fa_c4.fasta deconseq_ref.fa_c5.fasta deconseq_ref.fa_c6.fasta deconseq_ref.fa_c7.fasta deconseq_ref.fa_c8.fasta deconseq_ref.fa_c9.fasta deconseq_ref.fa_c10.fasta > deconseq_ref.fa_c4a.fasta
+
 ####Time to make BWA indexes
 ####assumes you are in /home/albuseb/bin/deconseq-standalone-0.4.3/
 ####make bwa executable
@@ -115,8 +123,8 @@ wget http://downloads.sourceforge.net/project/deconseq/standalone/deconseq-stand
     etc...
 
 ####use make_BWA_index.sh to implement the following commands:
-####/home/albuseb/deconseq-standalone-0.4.3/bwa64 index -a bwtsw -p deconseq_ref1.fa
-####/home/albuseb/deconseq-standalone-0.4.3/bwa64 index -a bwtsw -p deconseq_ref2.fa
+####/home/albuseb/bin/deconseq-standalone-0.4.3/bwa64 index -a bwtsw -p deconseq_ref.fa_c1 deconseq_ref.fa_c1.fasta
+####/home/albuseb/bin/deconseq-standalone-0.4.3/bwa64 index -a bwtsw -p deconseq_ref.fa_c2 deconseq_ref.fa_c2.fasta
 ####etc.
 
 ####to use make_BWA_index.sh
@@ -127,12 +135,18 @@ wget http://downloads.sourceforge.net/project/deconseq/standalone/deconseq-stand
     nano DeconSeqConfig.pm
 
 ####scroll to use constant DB_DIR => 'db/';
-####change to '/work/albuseb/deconseq_ref/
+#####change to '/work/albuseb/deconseq_ref/
 
 ####scroll to use constant TMP_DIR => 'tmp/';
-####change to '/work/albuseb/deconseq_temp/
+#####change to '/work/albuseb/deconseq_temp/
 
 ####scroll to use constant TMP_OUT => 'out/';
-####change to '/work/albuseb/deconseq_out/
+#####change to '/work/albuseb/deconseq_out/
 
+####scroll to use constant DBS =>
+#####change hsref to deconseq_ref
+#####change 'Human Reference GRCh37' to 'NCBI_ALL_BAC_&_Vir'
+#####change 'hs_ref_GRCh37' to 'deconseq_ref1,deconseq_ref2,deconseq_ref3,deconseq_ref4,deconseq_ref5,deconseq_ref6,deconseq_ref7,deconseq_ref8,deconseq_ref9,deconseq_ref10'
 
+####scroll to use constant DB_DEFAULT =>
+#####change to hsref to deconseq_ref
