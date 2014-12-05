@@ -146,7 +146,6 @@ wget http://downloads.sourceforge.net/project/deconseq/standalone/deconseq-stand
 ####scroll to use constant DBS =>
 #####change hsref to deconseq_ref
 #####change 'Human Reference GRCh37' to 'NCBI_ALL_BAC_&_Vir'
-#####change 'hs_ref_GRCh37' to 'deconseq_ref1,deconseq_ref2,deconseq_ref3,deconseq_ref4,deconseq_ref5,deconseq_ref6,deconseq_ref7,deconseq_ref8,deconseq_ref9,deconseq_ref10'
-
+#####change 'hs_ref_GRCh37' to 'deconseq_ref.fa_c1,deconseq_ref.fa_c2,deconseq_ref.fa_c3,deconseq_ref.fa_c4a'
 ####scroll to use constant DB_DEFAULT =>
 #####change to hsref to deconseq_ref
