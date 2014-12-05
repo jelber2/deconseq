@@ -76,14 +76,13 @@ DeconSeq
 #####do the same thing for splitFasta.sh
     nano splitFasta.sh
 
-
 ####go back to bin folder
     cd ..
     cd ..
     cd bin
 
 ####download DeconSeq (deconseq-standalone-0.4.3.tar.gz) to bin folder
-wget http://downloads.sourceforge.net/project/deconseq/standalone/deconseq-standalone-0.4.3.tar.gz?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fdeconseq%2Ffiles%2Fstandalone%2F&ts=1417735856&use_mirror=hivelocity
+    wget http://downloads.sourceforge.net/project/deconseq/standalone/deconseq-standalone-0.4.3.tar.gz?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fdeconseq%2Ffiles%2Fstandalone%2F&ts=1417735856&use_mirror=hivelocity
 
 ####unzip the compressed tar file
     tar -xzf deconseq-standalone-0.4.3.tar.gz
@@ -105,6 +104,8 @@ wget http://downloads.sourceforge.net/project/deconseq/standalone/deconseq-stand
     cd /work/albuseb/deconseq_ref
     cat deconseq_ref.fa_c4.fasta deconseq_ref.fa_c5.fasta deconseq_ref.fa_c6.fasta deconseq_ref.fa_c7.fasta deconseq_ref.fa_c8.fasta deconseq_ref.fa_c9.fasta deconseq_ref.fa_c10.fasta > deconseq_ref.fa_c4a.fasta
 
+========
+
 ####Time to make BWA indexes
 ####assumes you are in /home/albuseb/bin/deconseq-standalone-0.4.3/
 ####make bwa executable
@@ -120,9 +121,9 @@ wget http://downloads.sourceforge.net/project/deconseq/standalone/deconseq-stand
     etc...
 
 ####use make_BWA_index.sh to implement the following commands:
-####/home/albuseb/bin/deconseq-standalone-0.4.3/bwa64 index -a bwtsw -p deconseq_ref.fa_c1 deconseq_ref.fa_c1.fasta
-####/home/albuseb/bin/deconseq-standalone-0.4.3/bwa64 index -a bwtsw -p deconseq_ref.fa_c2 deconseq_ref.fa_c2.fasta
-####etc.
+    /home/albuseb/bin/deconseq-standalone-0.4.3/bwa64 index -a bwtsw -p deconseq_ref.fa_c1 deconseq_ref.fa_c1.fasta
+    /home/albuseb/bin/deconseq-standalone-0.4.3/bwa64 index -a bwtsw -p deconseq_ref.fa_c2 deconseq_ref.fa_c2.fasta
+    etc.
 
 ####to use make_BWA_index.sh
     qsub /home/albuseb/scripts/deconseq/make_BWA_index.sh
@@ -140,6 +141,8 @@ wget http://downloads.sourceforge.net/project/deconseq/standalone/deconseq-stand
 #####change 'hs_ref_GRCh37' to 'deconseq_ref.fa_c1,deconseq_ref.fa_c2,deconseq_ref.fa_c3,deconseq_ref.fa_c4a'
 ####scroll to use constant DB_DEFAULT =>
 #####change to hsref to deconseq_ref
+
+========
 
 ###you are now ready to run DeconSeq
 ####first you need 'edit' deconseq.pl so it will run faster using 16 rather than 1 core
@@ -161,6 +164,7 @@ wget http://downloads.sourceforge.net/project/deconseq/standalone/deconseq-stand
     -out_dir /work/albuseb/deconseq_out
 
 ####now you need to edit the script to change it to your allocation and also path to files to filter using nano
+#####you may also need to change the options (right now these are default settings for DeconSeq)
     nano run_deconseq.sh
 
 ####you can submit the job using
