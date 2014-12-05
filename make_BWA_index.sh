@@ -12,7 +12,7 @@
 #PBS -q single
 #PBS -A hpc_startup_albuseb
 #PBS -l nodes=1:ppn=1
-#PBS -l walltime=12:00:00
+#PBS -l walltime=05:00:00
 #PBS -o /work/albuseb/deconseq_ref/
 #PBS -j oe
 #PBS -N make_BWA_index.sh
